@@ -59,13 +59,16 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <p>---------------------------------------------------------------------------------------------------------------------------------</p>
 <br />
 
-<p> 5.) <strong>Create a Security Rule for the Linux vm in Azure - </strong>It is very likely that the reason the Linux vm was not replying to the ping requests from the Windows vm was because there is a Security Rule in place that blocked ping requests (or no rule that allowed ping requests). Within Azure: navigate to the Linux vm -> Networking. Notice how there is a called "DenyAllInbound". For security purposes, this is a good rule to have in place on a fresh vm. However, we must enable ICMP traffic in order to ping this machine from the Windows vm. Click Add inbound port rule -> click the ICMP radio button -> Allow -> set Priority to 100 -> Add (Azure uses a hierarchy to apply inbound and outbound port rules where lower numbered rules take precedence). Once the rule is created successfully, attempt to ping the Linux machine with the same command from step 3. 
+<p> 5.) <strong>Create a Security Rule for the Linux vm in Azure - </strong>It is very likely that the reason the Linux vm was not replying to the ping requests from the Windows vm was because there is a Security Rule in place that blocked ping requests (or no rule that allowed ping requests). Within Azure: navigate to the Linux vm -> Networking. Notice how there is a called "DenyAllInbound". For security purposes, this is a good rule to have in place on a fresh vm. However, we must enable ICMP traffic in order to ping this machine from the Windows vm. Click Add inbound port rule -> click the ICMP radio button -> Allow -> set Priority to 100 -> Add (Azure uses a hierarchy to apply inbound and outbound port rules where lower numbered rules take precedence). Once the rule is created successfully, attempt to ping the Linux machine with the same command from step 3 (ping 20.169.165.95 -t). 
 </p>
 <p>
-<img src="" />
+<img src="https://i.imgur.com/w8tbqMK.png" />
+</p>
+<br /><br />
+<p align="center"> <strong>Notice that both Command Prompt and Wireshark indicate that we are receiving ping replies from the Linux vm.</strontg><br /><br />
 </p>
 <p>
-<img src="" />
+<img src="https://i.imgur.com/PnAnWC8.png" />
 </p>
 <p>---------------------------------------------------------------------------------------------------------------------------------</p>
 <br />
