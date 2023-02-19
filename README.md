@@ -27,7 +27,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 <h2>Actions and Observations</h2>
 
-<p> 1.) <strong>Create Windows and Linux Virtual Machines - </strong>Within the Microsof Azure Portal, create a Resource Group that will host two virtual machines. Create the two virtual machines: one Windows 10 Pro machine and one Linux Server machine. Ensure thay they both reside within the same Resource Group. Additionally, ensure to create a vnet with the Windows machine, and that the Linux machine has the same vnet. You can inspect the network topology by typing "network watcher" in the Azure search bar -> Network Watcher -> and Topology on the left side of the screen. Select the Resource Group and vnet that hosts both vm's (if there is an error, ensure that the NetworkWatcher_*yourregion* resides within the Resource Group that you created. Your network topology should look like this:
+<p> 1.) <strong>Create Windows and Linux Virtual Machines - </strong>Within the Microsof Azure Portal, create a Resource Group that will host two virtual machines. Create the two virtual machines: one Windows 10 Pro machine and one Linux Server machine. Be sure to remember the passwords used for both machines (I keep them the same for simplicity, but they should be different for real-world applications). Ensure thay they both reside within the same Resource Group. Additionally, ensure to create a vnet with the Windows machine, and that the Linux machine has the same vnet. You can inspect the network topology by typing "network watcher" in the Azure search bar -> Network Watcher -> and Topology on the left side of the screen. Select the Resource Group and vnet that hosts both vm's (if there is an error, ensure that the NetworkWatcher_*yourregion* resides within the Resource Group that you created. Your network topology should look like this:
 </p>
 <p>
 <img src="https://i.imgur.com/PH1ezql.png" />
@@ -69,6 +69,22 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 </p>
 <p>
 <img src="https://i.imgur.com/PnAnWC8.png" />
+</p>
+<p>---------------------------------------------------------------------------------------------------------------------------------</p>
+<br />
+
+<p> 6.) <strong>Observe SSH Traffic - </strong>Either close and reopen Command Prompt or press ctrl + c to stop the perpetual ping. Now in the filter bar of Wireshark type "ssh" and press enter to filter for ssh traffic only. "SSH" stands for "secure socket shell" and is the protocol that allows administrators to securely operate Linux machines. In Command Prompt, type "ssh 20.169.165.95" (again, your Private IP address for the Linux vm will be different). Type "yes", then enter the password you created for the Linux machine (when typing the password, nothing will appear on the screen, this is normal). If successful, you will have "ssh'd" into the Linux machine. SSH is a terminal-based protocol, meaning that it is controlled within the terminal only and does not have a GUI or graphical user interface. In any case, notice the traffic within Wireshark. You can create more traffic by entering Linux commands such as "pwd", "cd ..", and "cd ~". These are simple navigation commands within Linux, and are simply used in this case to observe ssh network traffic.
+</p>
+<p>
+<img src="https://i.imgur.com/CSuGwYN.png" />
+</p>
+<p>---------------------------------------------------------------------------------------------------------------------------------</p>
+<br />
+
+<p> 7.) <strong>Observe DHCP Traffic - </strong>In Command prompt, type exit and press enter to exit the Linux vm. In Wireshark, type and select "dhcp" in the filter bar. In the Command Prompt, type "ipconfig /renew". This command will ping the dhcp server (the server responsible for assigning IP addresses), and will attempt to get a new IP address for the Windows vm. Note the network traffic within Wireshark.
+</p>
+<p>
+<img src="https://i.imgur.com/lgwih7M.png" />
 </p>
 <p>---------------------------------------------------------------------------------------------------------------------------------</p>
 <br />
